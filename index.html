@@ -1155,18 +1155,56 @@
       });
     };
 
+    // Helper: Compress Image to Small Base64 String for Google Sheets
+    function compressImage(file, maxWidth, quality, callback) {
+      const reader = new FileReader();
+      reader.onload = function(e) {
+        const img = new Image();
+        img.onload = function() {
+          const canvas = document.createElement('canvas');
+          let width = img.width;
+          let height = img.height;
+
+          if (width > maxWidth) {
+            height = Math.round((height * maxWidth) / width);
+            width = maxWidth;
+          }
+
+          canvas.width = width;
+          canvas.height = height;
+          const ctx = canvas.getContext('2d');
+          ctx.drawImage(img, 0, 0, width, height);
+          
+          // Export resized low-weight Data URL (JPEG format)
+          const dataUrl = canvas.toDataURL('image/jpeg', quality);
+          callback(dataUrl);
+        };
+        img.src = e.target.result;
+      };
+      reader.readAsDataURL(file);
+    }
+
     window.previewDoc = function(input, targetId) {
       const file = input.files[0];
       const target = document.getElementById(targetId);
       const hiddenInput = targetId === 'previewKk' ? document.getElementById('wargaKkData') : document.getElementById('wargaKtpData');
 
       if (file) {
-        const reader = new FileReader();
-        reader.onload = function(e) {
-          hiddenInput.value = e.target.result;
-          target.innerHTML = `<img src="${e.target.result}" class="img-thumbnail rounded max-h-24 mx-auto shadow-sm">`;
-        };
-        reader.readAsDataURL(file);
+        if (file.type.startsWith('image/')) {
+          // Compress image to max width 700px and 0.6 quality for Google Sheets limit
+          compressImage(file, 700, 0.6, function(compressedBase64) {
+            hiddenInput.value = compressedBase64;
+            target.innerHTML = `<img src="${compressedBase64}" class="img-thumbnail rounded max-h-24 mx-auto shadow-sm">`;
+          });
+        } else {
+          // Direct fallback for non-image files
+          const reader = new FileReader();
+          reader.onload = function(e) {
+            hiddenInput.value = e.target.result;
+            target.innerHTML = `<span class="badge bg-secondary">File Terlampir (${(file.size/1024).toFixed(1)} KB)</span>`;
+          };
+          reader.readAsDataURL(file);
+        }
       }
     };
 
