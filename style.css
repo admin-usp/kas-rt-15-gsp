@@ -48,6 +48,71 @@
       letter-spacing: 0.05em;
     }
 
+    /* Sticky column for Matrix table */
+    .sticky-col {
+      position: sticky;
+      left: 0;
+      z-index: 10;
+      box-shadow: 2px 0 5px rgba(0,0,0,0.05);
+    }
+
+    /* Modern Responsive CSS Media Queries for Smartphone (max-width: 640px) */
+    @media (max-width: 640px) {
+      .app-header .container-fluid {
+        padding-left: 0.75rem;
+        padding-right: 0.75rem;
+      }
+      .app-header h1 {
+        font-size: 1rem;
+      }
+      .app-header p {
+        font-size: 0.75rem;
+      }
+
+      /* Stack Navigation Pills for Mobile */
+      .nav-pills .nav-link {
+        font-size: 0.775rem;
+        padding: 0.5rem 0.65rem;
+        text-align: left;
+      }
+
+      /* Touch Target Improvements for Mobile */
+      .btn-xs {
+        padding: 0.35rem 0.5rem !important;
+        font-size: 0.7rem !important;
+      }
+
+      /* Table responsive horizontal scroll fixes */
+      .table-custom th, .table-custom td {
+        white-space: nowrap;
+      }
+      
+      /* Sticky Col styling inside smaller smartphone screens */
+      .sticky-col {
+        max-width: 120px;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        font-size: 0.75rem !important;
+      }
+
+      /* Floating Toast notification on mobile */
+      .toast-container {
+        left: 50% !important;
+        transform: translateX(-50%);
+        width: 90% !important;
+        bottom: 1rem !important;
+      }
+
+      /* Signature Section inside LPJ Mobile Print */
+      .lpj-signature-row {
+        flex-direction: column !important;
+        gap: 1.5rem !important;
+      }
+      .lpj-signature-col {
+        width: 100% !important;
+      }
+    }
+
     /* Custom Print Styles for LPJ & Reports */
     @media print {
       .no-print {
