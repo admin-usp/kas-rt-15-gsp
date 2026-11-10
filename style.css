@@ -1,0 +1,72 @@
+           @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap');
+           body {
+               font-family: 'Plus Jakarta Sans', sans-serif;
+               background-color: #f8fafc;
+               color: #334155;
+           }
+           /* Modern Glassmorphism & Custom Cards */
+           
+           .app-header {
+               background: linear-gradient(135deg, #065f46 0%, #047857 50%, #10b981 100%);
+           }
+           
+           .nav-pills .nav-link {
+               color: #64748b;
+               font-weight: 600;
+               font-size: 0.875rem;
+               border-radius: 0.5rem;
+               padding: 0.6rem 1rem;
+               transition: all 0.2s ease;
+           }
+           
+           .nav-pills .nav-link.active {
+               background-color: #059669 !important;
+               color: #ffffff !important;
+               box-shadow: 0 4px 12px rgba(5, 150, 105, 0.25);
+           }
+           
+           .stat-card {
+               border: 1px solid #e2e8f0;
+               border-radius: 0.85rem;
+               transition: transform 0.2s ease, box-shadow 0.2s ease;
+           }
+           
+           .stat-card:hover {
+               transform: translateY(-2px);
+               box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.05);
+           }
+           
+           .table-custom {
+               font-size: 0.85rem;
+           }
+           
+           .table-custom th {
+               background-color: #f1f5f9;
+               color: #475569;
+               font-weight: 700;
+               text-transform: uppercase;
+               font-size: 0.725rem;
+               letter-spacing: 0.05em;
+           }
+           /* Custom Print Styles for LPJ & Reports */
+           
+           @media print {
+               .no-print {
+                   display: none !important;
+               }
+               .print-only {
+                   display: block !important;
+               }
+               body {
+                   background: #fff !important;
+                   color: #000 !important;
+               }
+               .card-box {
+                   box-shadow: none !important;
+                   border: none !important;
+               }
+           }
+           
+           .print-only {
+               display: none;
+           }
