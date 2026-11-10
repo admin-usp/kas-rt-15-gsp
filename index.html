@@ -864,7 +864,7 @@
     async function loadSheetsData() {
       const statusBadge = document.getElementById('firebaseStatus');
       
-      if (!GOOGLE_SCRIPT_URL || GOOGLE_SCRIPT_URL.includes("https://script.google.com/macros/s/AKfycbwU8FbOaSoaUPM-Ygni5JhqVOzwCXiRVC0h-cGHpfsI6g1MML5t3tDK434sHw6IY_o/exec")) {
+      if (!GOOGLE_SCRIPT_URL || GOOGLE_SCRIPT_URL.includes("PASANG_WEB_APP_URL_SHEETS_ANDA_DI_SINI")) {
         console.warn("Google Script URL not set. Using local storage.");
         statusBadge.className = "badge bg-warning text-dark border px-3 py-2 text-xs rounded-pill";
         statusBadge.innerHTML = `<i class="fa-solid fa-hard-drive me-1"></i> Mode Lokal (Sheet Unlinked)`;
